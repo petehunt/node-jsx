@@ -1,0 +1,12 @@
+{
+  "name": "node-jsx",
+  "version": "0.0.0",
+  "description": "transparently require() jsx from node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "Pete Hunt",
+  "license": "Apache 2"
+}
