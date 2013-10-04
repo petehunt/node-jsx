@@ -14,7 +14,7 @@ function install() {
   require.extensions['.js'] = function(module, filename) {
     var src = fs.readFileSync(filename, {encoding: 'utf8'});
     src = React.transform(src);
-    module._compile(src);
+    module._compile(src, filename);
   };
 
   installed = true;
