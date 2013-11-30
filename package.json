@@ -4,8 +4,7 @@
   "description": "transparently require() jsx from node",
   "main": "index.js",
   "dependencies": {
-    "react-tools": "~0.4.1",
-    "coffee-script": "~1.6.3"
+    "react-tools": "~0.4.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
