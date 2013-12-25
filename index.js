@@ -18,7 +18,11 @@ function install(options) {
     if (typeof options.additionalTransform == 'function') {
       src = options.additionalTransform(src);
     }
-    src = React.transform(src);
+    try {
+      src = React.transform(src);
+    } catch (e) {
+      throw new Error('Error transforming ' + filename + ' to JSX: ' + e.toString());
+    }
     module._compile(src, filename);
   };
 
