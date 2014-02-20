@@ -1,6 +1,6 @@
 {
   "name": "node-jsx",
-  "version": "0.2.1",
+  "version": "0.9.0",
   "description": "transparently require() jsx from node",
   "main": "index.js",
   "dependencies": {
