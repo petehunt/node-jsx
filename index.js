@@ -11,7 +11,7 @@ function install(options) {
   options = options || {};
 
   // Import everything in the transformer codepath before we add the import hook
-  React.transform('');
+  React.transform('', options);
 
   require.extensions[options.extension || '.js'] = function(module, filename) {
     var src = fs.readFileSync(filename, {encoding: 'utf8'});
@@ -19,7 +19,7 @@ function install(options) {
       src = options.additionalTransform(src);
     }
     try {
-      src = React.transform(src);
+      src = React.transform(src, options);
     } catch (e) {
       throw new Error('Error transforming ' + filename + ' to JSX: ' + e.toString());
     }
