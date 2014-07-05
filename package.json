@@ -12,7 +12,7 @@
   "scripts": {
     "test": "jasmine-node node-jsx.spec.js"
   },
-  "repository": "",
+  "repository": "petehunt/node-jsx",
   "author": "Pete Hunt",
   "license": "Apache 2"
 }
