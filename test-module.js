@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 
 function jonx() {
   return 'jonx';

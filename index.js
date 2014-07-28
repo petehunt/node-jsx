@@ -1,7 +1,12 @@
 var fs = require('fs');
 var React = require('react-tools');
+var docblock = require('jstransform/src/docblock');
 
 var installed = false;
+
+function parsePragma(data) {
+  return docblock.parseAsObject(docblock.extract(data)); 
+}
 
 function install(options) {
   if (installed) {
@@ -15,6 +20,11 @@ function install(options) {
 
   require.extensions[options.extension || '.js'] = function(module, filename) {
     var src = fs.readFileSync(filename, {encoding: 'utf8'});
+    if (options.addDocblock) {
+      if (typeof parsePragma(src).jsx === 'undefined') {
+        src = '/** @jsx React.DOM */' + src;
+      }
+    }
     if (typeof options.additionalTransform == 'function') {
       src = options.additionalTransform(src);
     }
