@@ -16,12 +16,15 @@ function install(options) {
   require.extensions[options.extension || '.js'] = function(module, filename) {
     var src = fs.readFileSync(filename, {encoding: 'utf8'});
     if (typeof options.additionalTransform == 'function') {
-      src = options.additionalTransform(src);
+      src = options.additionalTransform(src, filename);
     }
     try {
       src = React.transform(src, options);
     } catch (e) {
       throw new Error('Error transforming ' + filename + ' to JSX: ' + e.toString());
+    }
+    if (typeof options.additionalTransformAfter == 'function') {
+      src = options.additionalTransformAfter(src, filename);
     }
     module._compile(src, filename);
   };
