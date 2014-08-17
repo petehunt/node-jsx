@@ -27,3 +27,12 @@ require('node-jsx').install({
 If you want to use [ES6 transforms](https://github.com/facebook/jstransform/tree/master/visitors) available in the JSX tool
 
 `require('node-jsx').install({harmony: true})`
+
+If you want to automatically add `/** @jsx */` to loaded files do:
+
+`require('node-jsx').install({insertPragma:''});`
+
+Or if you want `/** @jsx React.DOM */`, instead do:
+
+`require('node-jsx').install({insertPragma:'React.DOM'});`
+

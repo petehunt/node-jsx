@@ -18,6 +18,9 @@ function install(options) {
     if (typeof options.additionalTransform == 'function') {
       src = options.additionalTransform(src);
     }
+    if (options.insertPragma) {
+      src = '/** @jsx ' + options.insertPragma + ' */' + src;
+    }
     try {
       src = React.transform(src, options);
     } catch (e) {
