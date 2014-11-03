@@ -1,4 +1,5 @@
 var fs = require('fs');
+var path = require('path');
 var React = require('react-tools');
 
 var installed = false;
@@ -14,7 +15,10 @@ function install(options) {
   React.transform('', options);
 
   require.extensions[options.extension || '.js'] = function(module, filename) {
-    var src = fs.readFileSync(filename, {encoding: 'utf8'});
+    var directive = path.extname(filename) === '.jsx'
+      ? '/** @jsx React.DOM */'
+      : '';
+    var src = directive + fs.readFileSync(filename, {encoding: 'utf8'});
     if (typeof options.additionalTransform == 'function') {
       src = options.additionalTransform(src);
     }
