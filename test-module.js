@@ -1,7 +1,4 @@
-/** @jsx React.DOM */
+/* @jsx */
+var React = require('react');
 
-function jonx() {
-  return 'jonx';
-}
-
-module.exports = <jonx />;
+module.exports = React.renderToString(<span>jonx</span>);
