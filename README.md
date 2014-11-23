@@ -27,3 +27,5 @@ require('node-jsx').install({
 If you want to use [ES6 transforms](https://github.com/facebook/jstransform/tree/master/visitors) available in the JSX tool
 
 `require('node-jsx').install({harmony: true})`
+
+Note that `node-jsx` still requires a JSX pragma when the extension is set to `.js`.
