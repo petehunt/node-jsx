@@ -1,6 +1,6 @@
 describe('node-jsx', function() {
   it('should work', function() {
     require('./index').install();
-    expect(require('./test-module').indexOf('jonx') > -1).toBe(true);
+    expect(require('./test-module')).toBe('jonx');
   });
 });
