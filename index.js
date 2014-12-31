@@ -16,7 +16,11 @@ function install(options) {
   require.extensions[options.extension || '.js'] = function(module, filename) {
     var src = fs.readFileSync(filename, {encoding: 'utf8'});
     if (typeof options.additionalTransform == 'function') {
-      src = options.additionalTransform(src);
+      console.warn("node-jsx: please change additionalTransform to preTransform");
+      options.preTransform = options.additionalTransform;
+    }
+    if (typeof options.preTransform == 'function') {
+      src = options.preTransform(src);
     }
     try {
       src = React.transform(src, options);
