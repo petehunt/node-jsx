@@ -23,6 +23,9 @@ function install(options) {
     } catch (e) {
       throw new Error('Error transforming ' + filename + ' to JSX: ' + e.toString());
     }
+    if (typeof options.postTransform == 'function') {
+      src = options.postTransform(src);
+    }
     module._compile(src, filename);
   };
 
