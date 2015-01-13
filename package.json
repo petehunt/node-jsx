@@ -4,6 +4,7 @@
   "description": "transparently require() jsx from node",
   "main": "index.js",
   "dependencies": {
+    "node-watch": "~0.3.4",
     "react-tools": "^0.12.1"
   },
   "devDependencies": {

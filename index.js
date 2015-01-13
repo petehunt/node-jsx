@@ -1,5 +1,6 @@
 var fs = require('fs');
 var React = require('react-tools');
+var watch = require('node-watch');
 
 var installed = false;
 
@@ -23,10 +24,37 @@ function install(options) {
     } catch (e) {
       throw new Error('Error transforming ' + filename + ' to JSX: ' + e.toString());
     }
+
+    // Watch the fie we just transformed and expire it
+    if (options.watch) {
+      watch(filename, watchFn);
+    }
+
     module._compile(src, filename);
   };
 
   installed = true;
+}
+
+function watchFn(filename) {
+  expire(filename, true);
+}
+
+function expire(id, recursive) {
+  var modules = [id];
+  var module = require.cache[id];
+
+  // Go through all the module's parents. Seems to be necessary to clear the cache
+  while (recursive && module && module.parent) {
+    module = module.parent;
+
+    modules.unshift(module.id);
+    hasParents = module.parent;
+  }
+
+  for (var i = 0; i < modules.length; i++) {
+    delete require.cache[modules[i]];
+  }
 }
 
 module.exports = {
