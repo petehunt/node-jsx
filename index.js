@@ -18,10 +18,12 @@ function install(options) {
     if (typeof options.additionalTransform == 'function') {
       src = options.additionalTransform(src);
     }
-    try {
-      src = React.transform(src, options);
-    } catch (e) {
-      throw new Error('Error transforming ' + filename + ' to JSX: ' + e.toString());
+    if (!options.checkDocblock || (src.indexOf('@jsx React.DOM') > -1)) {
+      try {
+        src = React.transform(src, options);
+      } catch (e) {
+        throw new Error('Error transforming ' + filename + ' to JSX: ' + e.toString());
+      }
     }
     module._compile(src, filename);
   };
