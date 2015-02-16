@@ -6,9 +6,11 @@ Transparently `require()` jsx from node.
 
 `require('node-jsx').install()`
 
+The default file extension used is `.jsx`
+
 If you want to use a different extension, do:
 
-`require('node-jsx').install({extension: '.jsx'})`
+`require('node-jsx').install({extension: '.react-js'})`
 
 If you want to couple with an additional transform (such as CoffeeScript), do:
 
