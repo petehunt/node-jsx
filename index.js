@@ -20,7 +20,7 @@ function install(options) {
       options.preTransform = options.additionalTransform;
     }
     if (typeof options.preTransform == 'function') {
-      src = options.preTransform(src);
+      src = options.preTransform(src, filename);
     }
     try {
       src = React.transform(src, options);
@@ -28,7 +28,7 @@ function install(options) {
       throw new Error('Error transforming ' + filename + ' to JSX: ' + e.toString());
     }
     if (typeof options.postTransform == 'function') {
-      src = options.postTransform(src);
+      src = options.postTransform(src, filename);
     }
     module._compile(src, filename);
   };
