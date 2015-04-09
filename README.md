@@ -20,7 +20,7 @@ If you want to couple with an additional transform (such as CoffeeScript), do:
 var coffee = require('coffee-script');
 require('node-jsx').install({
   extension: '.coffee',
-  preTransform: function(src) {
+  preTransform: function(src, filename) {
     return coffee.compile(src, {
       'bare': true
     });
@@ -34,6 +34,17 @@ var traceur = require('traceur');
 require('node-jsx').install({
   extension: '.jsx',
   postTransform: traceur.compile
+});
+```
+
+Or with babel:
+```javascript
+var babel = require('babel');
+require('node-jsx').install({
+  extension: '.jsx',
+  postTransform: function(src, filename) {
+    return babel.transform(filename).code;
+  }
 });
 ```
 
