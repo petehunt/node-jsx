@@ -19,7 +19,9 @@ function install(options) {
       src = options.additionalTransform(src);
     }
     try {
-      src = React.transform(src, options);
+      if (src.indexOf('/** @jsx React.DOM */') > -1) {
+        src = React.transform(src, options);
+      }
     } catch (e) {
       throw new Error('Error transforming ' + filename + ' to JSX: ' + e.toString());
     }
