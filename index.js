@@ -13,7 +13,7 @@ function install(options) {
   // Import everything in the transformer codepath before we add the import hook
   React.transform('', options);
 
-  require.extensions[options.extension || '.js'] = function(module, filename) {
+  require.extensions[options.extension || '.jsx'] = function(module, filename) {
     var src = fs.readFileSync(filename, {encoding: 'utf8'});
     if (typeof options.additionalTransform == 'function') {
       src = options.additionalTransform(src);
