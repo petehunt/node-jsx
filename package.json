@@ -4,7 +4,7 @@
   "description": "transparently require() jsx from node",
   "main": "index.js",
   "dependencies": {
-    "jstransform": ">=11.0.0"
+    "jstransform": "11"
   },
   "devDependencies": {
     "jasmine-node": "1.12.0",
