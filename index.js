@@ -21,6 +21,9 @@ function install(options) {
     if (typeof options.additionalTransform == 'function') {
       src = options.additionalTransform(src);
     }
+    if (options.insertPragma) {
+      src = '/** @jsx ' + options.insertPragma + ' */' + src;
+    }
     try {
       src = jstransform.transform(src, options).code;
     } catch (e) {
