@@ -10,6 +10,10 @@ If you want to use a different extension, do:
 
 `require('node-jsx').install({extension: '.jsx'})`
 
+If you want to define specific paths where files are located, for optimization reasons, do:
+
+`require('node-jsx').install({paths: [path.resolve(__dirname, 'app')]})`
+
 If you want to couple with an additional transform (such as CoffeeScript), do:
 
 ```
