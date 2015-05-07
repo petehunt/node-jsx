@@ -11,7 +11,7 @@
     "react": "^0.13.2"
   },
   "scripts": {
-    "test": "jasmine-node node-jsx.spec.js"
+    "test": "jasmine-node node-jsx.spec.js && jasmine-node node-jsx-path-valid.spec.js && jasmine-node node-jsx-path-invalid.spec.js"
   },
   "repository": "petehunt/node-jsx",
   "author": "Pete Hunt",
