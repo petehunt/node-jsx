@@ -19,12 +19,19 @@ function install(options) {
 
     var src = fs.readFileSync(filename, {encoding: 'utf8'});
     if (typeof options.additionalTransform == 'function') {
-      src = options.additionalTransform(src);
+      console.warn("node-jsx: please change additionalTransform to preTransform");
+      options.preTransform = options.additionalTransform;
+    }
+    if (typeof options.preTransform == 'function') {
+      src = options.preTransform(src, filename);
     }
     try {
       src = jstransform.transform(src, options).code;
     } catch (e) {
       throw new Error('Error transforming ' + filename + ' to JS: ' + e.toString());
+    }
+    if (typeof options.postTransform == 'function') {
+      src = options.postTransform(src, filename);
     }
     module._compile(src, filename);
   };
