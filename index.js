@@ -19,7 +19,7 @@ function install(options) {
 
     var src = fs.readFileSync(filename, {encoding: 'utf8'});
     if (typeof options.additionalTransform == 'function') {
-      src = options.additionalTransform(src);
+      src = options.additionalTransform(src, filename);
     }
     try {
       src = jstransform.transform(src, options).code;
